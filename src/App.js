@@ -16,6 +16,18 @@ function App() {
 
   return (
     <div className='container'>
+      <h1>Are these similar?</h1>
+      <div className='comparison-container'>
+        <div className='movie movie-x'>Movie X</div>
+        <div className='middle-section-container'>
+          <h2>Yes</h2>
+          <button>Clear selection</button>
+          <ul className='similarities-list'>
+            <li>Lentght</li>
+          </ul>
+        </div>
+        <div className='movie movie-y'>Movie Y</div>
+      </div>
       {movieData ? (
         <div className='movie-grid-container'>
           <ul className='list'>

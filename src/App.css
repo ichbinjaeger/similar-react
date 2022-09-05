@@ -1,8 +1,39 @@
 .container {
-  background-color: red;
+  /* background-color: red; */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.comparison-container {
+  display: flex;
+  background-color: aquamarine;
+  width: 100%;
+  justify-content: center;
+}
+
+.middle-section-container {
+  background-color: wheat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 4;
+  margin: 0 2rem;
+}
+
+.movie {
+  background-color: #eee;
+  height: 50vh;
+  flex: 1;
+}
+
+.movie-x {
+  background-color: burlywood;
+}
+.movie-y {
+  background-color: thistle;
 }
 
 .movie-grid-container {
