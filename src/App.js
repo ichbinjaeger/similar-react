@@ -33,6 +33,7 @@ function App() {
   const clearSelection = () => {
     setMovieX(null)
     setMovieY(null)
+    setMoviesAreSimilar(null)
   }
 
   const compareProdYear = (movieX, movieY) => {
@@ -97,7 +98,7 @@ function App() {
       similarActors,
       similarDuration,
     ]
-    const isSimilar = resultArr.filter(bool => bool).length < 3
+    const isSimilar = resultArr.filter(bool => bool).length > 3
     console.log(resultArr, 'Similar: ' + isSimilar)
     return isSimilar
   }
