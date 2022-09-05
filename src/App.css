@@ -1,3 +1,27 @@
 .container {
   background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-grid-container {
+  background-color: #333;
+  margin: 0 auto;
+}
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  grid-auto-rows: 300px;
+  list-style: none;
+  padding: 0;
+}
+.list .list-item {
+  flex: 1 0 15%;
+  box-sizing: border-box;
+  background: #eee;
+  color: #333;
+  padding: 1rem;
+  margin: 1rem;
 }

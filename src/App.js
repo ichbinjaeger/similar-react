@@ -8,7 +8,6 @@ function App() {
   const fetchData = async () => {
     const res = await getPage()
     setMovieData(res.blocks[0].products)
-    console.log(movieData)
   }
 
   useEffect(() => {
@@ -18,15 +17,23 @@ function App() {
   return (
     <div className='container'>
       {movieData ? (
-        <ul>
-          {movieData.map((item, key) => {
-            return (
-              <li key={key}>
-                <h3>{item.title}</h3>
-              </li>
-            )
-          })}
-        </ul>
+        <div className='movie-grid-container'>
+          <ul className='list'>
+            {movieData.map((movie, key) => {
+              return (
+                <li className='list-item' key={key}>
+                  <div className='list-content'>
+                    <h3>{movie.title}</h3>
+                    <ul>
+                      <li>Production year: {movie.production.year}</li>
+                      <li>Parental rating: {movie.parentalRating}</li>
+                    </ul>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       ) : (
         'Loading...'
       )}
