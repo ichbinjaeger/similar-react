@@ -27,6 +27,9 @@ function App() {
                     <ul>
                       <li>Production year: {movie.production.year}</li>
                       <li>Parental rating: {movie.parentalRating}</li>
+                      <li>IMDb rating: {movie.imdb?.rating}</li>
+                      <li>Actors: {movie.people.actors?.join(', ')}</li>
+                      <li>Duration: {movie.duration.readable}</li>
                     </ul>
                   </div>
                 </li>
