@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react"
-import "./App.css"
-import getPage from "./api/content"
+import { useEffect, useState } from 'react'
+import './App.css'
+import getPage from './api/content'
 
 function App() {
   const [movieData, setMovieData] = useState(null)
 
   const fetchData = async () => {
     const res = await getPage()
-    console.log(res)
     setMovieData(res.blocks[0].products)
     console.log(movieData)
   }
@@ -16,7 +15,23 @@ function App() {
     fetchData()
   })
 
-  return <div className="container">hej</div>
+  return (
+    <div className='container'>
+      {movieData ? (
+        <ul>
+          {movieData.map((item, key) => {
+            return (
+              <li key={key}>
+                <h3>{item.title}</h3>
+              </li>
+            )
+          })}
+        </ul>
+      ) : (
+        'Loading...'
+      )}
+    </div>
+  )
 }
 
 export default App
