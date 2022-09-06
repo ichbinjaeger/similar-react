@@ -131,7 +131,11 @@ function App() {
       <h1>Are these similar?</h1>
       <div className='comparison-container'>
         <div className='movie movie-x'>
-          {movieX ? <h3>{movieX?.title}</h3> : 'Choose a movie'}
+          {movieX ? (
+            <h3 className='movie-title'>{movieX?.title}</h3>
+          ) : (
+            'Choose a movie'
+          )}
         </div>
         <div className='middle-section-container'>
           <h2>

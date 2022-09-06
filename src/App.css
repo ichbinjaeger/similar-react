@@ -1,5 +1,5 @@
 .container {
-  /* background-color: red; */
+  color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,9 +9,9 @@
 
 .comparison-container {
   display: flex;
-  background-color: aquamarine;
   width: 100%;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .middle-section-container {
@@ -21,44 +21,40 @@
   align-items: center;
   flex: 4;
   margin: 0 2rem;
+  text-align: center;
 }
 
 .movie {
   background-color: #eee;
   height: 50vh;
-  flex: 1;
-}
-
-.movie-x {
-  background-color: burlywood;
-}
-.movie-y {
-  background-color: thistle;
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
 }
 
 .movie-grid-container {
-  background-color: #333;
   margin: 0 auto;
 }
 .list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1em;
-  /* grid-auto-rows: ; */
+  gap: 1rem;
   list-style: none;
   padding: 0;
+  margin: 0 auto;
 }
 .list .list-item {
   flex: 1 0 15%;
   box-sizing: border-box;
   background: #eee;
-  color: #333;
-  padding: 1rem;
-  margin: 1rem;
 }
 
 .list-item {
   cursor: pointer;
+  padding: 1rem;
 }
 
 .active {
