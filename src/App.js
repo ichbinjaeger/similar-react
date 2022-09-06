@@ -37,13 +37,19 @@ function App() {
   }
 
   const compareProdYear = (movieX, movieY) => {
-    return movieX.production.year === movieY.production.year
+    if (movieX.production.year === movieY.production.year) {
+      return 'Production year'
+    } else return false
   }
   const compareParentalRating = (movieX, movieY) => {
-    return movieX.parentalRating === movieY.parentalRating
+    if (movieX.parentalRating === movieY.parentalRating) {
+      return 'Parental rating'
+    } else return false
   }
   const compareIMDbRating = (movieX, movieY) => {
-    return Math.round(movieX?.imdb?.rating) === Math.round(movieY?.imdb?.rating)
+    if (Math.round(movieX?.imdb?.rating) === Math.round(movieY?.imdb?.rating)) {
+      return 'IMDb rating'
+    } else return false
   }
 
   const compareActors = (movieX, movieY) => {
@@ -56,8 +62,9 @@ function App() {
     const containsSameActor = movieX.people.actors.some(actor => {
       return movieY.people.actors.includes(actor)
     })
-
-    return containsSameActor
+    if (containsSameActor) {
+      return 'Actor(s)'
+    } else return false
   }
 
   const compareDuration = (movieX, movieY) => {
@@ -81,7 +88,9 @@ function App() {
         return 2
       } else return 3
     }
-    return movieXDuration() === movieYDuration()
+    if (movieXDuration() === movieYDuration()) {
+      return 'Duration'
+    } else return false
   }
 
   const compareProperties = (movieX, movieY) => {
@@ -98,11 +107,17 @@ function App() {
       similarActors,
       similarDuration,
     ]
-    const isSimilar = resultArr.filter(bool => bool).length > 3
-    console.log(resultArr, 'Similar: ' + isSimilar)
-    return isSimilar
-  }
 
+    // const isSimilar = resultArr.filter(bool => bool).length > 3
+    // const isSimilar = resultArr.filter(bool => bool).length > 3
+    const simArr = resultArr.filter(bool => bool)
+    // const filterProps =()=>{
+    //   if (resultArr)
+    // }
+    console.log(resultArr, 'Similar: ' + simArr)
+    return simArr
+  }
+  // console.log(moviesAreSimilar?.length >= 3)
   return (
     <div className='container'>
       <h1>Are these similar?</h1>
@@ -111,11 +126,23 @@ function App() {
           {movieX ? <h3>{movieX?.title}</h3> : 'Choose a movie'}
         </div>
         <div className='middle-section-container'>
-          <h2>{moviesAreSimilar ? 'Yes' : 'No'}</h2>
+          {/* <h2>{moviesAreSimilar ? 'Yes' : 'No'}</h2> */}
+          <h2>
+            {moviesAreSimilar?.length >= 3
+              ? 'Yes'
+              : moviesAreSimilar === null
+              ? 'Choose two movies to find out'
+              : 'No'}
+          </h2>
           <button onClick={() => clearSelection()}>Clear selection</button>
-          <ul className='similarities-list'>
-            <li>Lentght</li>
-          </ul>
+          {moviesAreSimilar ? (
+            <ul className='similarities-list'>
+              <h4>Similar properties:</h4>
+              {moviesAreSimilar.map((property, key) => {
+                return <li key={key}>{property}</li>
+              })}
+            </ul>
+          ) : null}
         </div>
         <div className='movie movie-y'>
           {movieY ? <h3>{movieY?.title}</h3> : 'Choose a movie'}
