@@ -56,3 +56,11 @@
   padding: 1rem;
   margin: 1rem;
 }
+
+.list-item {
+  cursor: pointer;
+}
+
+.active {
+  border: 2px solid tomato;
+}

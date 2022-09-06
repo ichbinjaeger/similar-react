@@ -8,6 +8,7 @@ function App() {
   const [movieX, setMovieX] = useState(null)
   const [movieY, setMovieY] = useState(null)
   const [moviesAreSimilar, setMoviesAreSimilar] = useState(null)
+  const [active, setActive] = useState()
 
   const fetchData = async () => {
     const res = await getPage()
@@ -25,8 +26,10 @@ function App() {
   const handleSelect = movie => {
     if (movieX === null) {
       setMovieX(movie)
+      setActive(movie)
     } else if (movieY === null) {
       setMovieY(movie)
+      setActive(movie)
     } else return
   }
 
@@ -34,6 +37,7 @@ function App() {
     setMovieX(null)
     setMovieY(null)
     setMoviesAreSimilar(null)
+    setActive(null)
   }
 
   const compareProdYear = (movieX, movieY) => {
@@ -108,16 +112,20 @@ function App() {
       similarDuration,
     ]
 
-    // const isSimilar = resultArr.filter(bool => bool).length > 3
-    // const isSimilar = resultArr.filter(bool => bool).length > 3
-    const simArr = resultArr.filter(bool => bool)
-    // const filterProps =()=>{
-    //   if (resultArr)
-    // }
-    console.log(resultArr, 'Similar: ' + simArr)
-    return simArr
+    return resultArr.filter(bool => bool)
   }
-  // console.log(moviesAreSimilar?.length >= 3)
+
+  const ListItem = ({ children, active, onClick }) => {
+    return (
+      <li
+        onClick={onClick}
+        className={active ? 'list-item active' : 'list-item'}
+      >
+        {children}
+      </li>
+    )
+  }
+
   return (
     <div className='container'>
       <h1>Are these similar?</h1>
@@ -126,14 +134,21 @@ function App() {
           {movieX ? <h3>{movieX?.title}</h3> : 'Choose a movie'}
         </div>
         <div className='middle-section-container'>
-          {/* <h2>{moviesAreSimilar ? 'Yes' : 'No'}</h2> */}
           <h2>
-            {moviesAreSimilar?.length >= 3
+            {moviesAreSimilar?.includes('Production year' && 'Parental rating')
               ? 'Yes'
               : moviesAreSimilar === null
               ? 'Choose two movies to find out'
               : 'No'}
           </h2>
+          <h3>Are they very similar?</h3>
+          <p>
+            {moviesAreSimilar?.length >= 3
+              ? 'Yes'
+              : moviesAreSimilar === null
+              ? 'Choose two movies to find out if they have 3 (or more similar properties)'
+              : 'No'}
+          </p>
           <button onClick={() => clearSelection()}>Clear selection</button>
           {moviesAreSimilar ? (
             <ul className='similarities-list'>
@@ -153,8 +168,8 @@ function App() {
           <ul className='list'>
             {movieData.map((movie, key) => {
               return (
-                <li
-                  className='list-item'
+                <ListItem
+                  active={movie === active}
                   key={key}
                   onClick={() => handleSelect(movie)}
                 >
@@ -168,7 +183,7 @@ function App() {
                       <li>Duration: {movie.duration.readable}</li>
                     </ul>
                   </div>
-                </li>
+                </ListItem>
               )
             })}
           </ul>
